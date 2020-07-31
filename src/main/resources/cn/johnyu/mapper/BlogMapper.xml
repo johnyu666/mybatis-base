@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.johnyu.mapper.BlogMapper">
+    <resultMap id="blogMapper" type="cn.johnyu.domain.Blog">
+        <id property="id" column="id"></id>
+        <result property="title" column="title"></result>
+        <association property="author">
+            <id property="id" column="blog_id"></id>
+            <result property="username" column="username"></result>
+        </association>
+        <collection property="posts" ofType="cn.johnyu.domain.Post">
+            <id property="id" column="post_id"></id>
+            <result property="title" column="post_title"></result>
+        </collection>
+    </resultMap>
+    <select id="findBlog" resultMap="blogMapper">
+        select
+            b.id as id,
+            b.title,username,
+            p.id as post_id,
+            p.title as post_title
+        from blog as b
+        left join author as a on author_id=a.id
+        left join post as p on blog_id=b.id
+        where b.id=1
+    </select>
+</mapper>

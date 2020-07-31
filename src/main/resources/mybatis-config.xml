@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties">
+        <property name="other" value="其它配置信息..."/>
+    </properties>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper class="cn.johnyu.mapper.BlogMapper"></mapper>
+    </mappers>
+<!--可以使用java代码的方式进行加载-->
+<!--    <mappers>-->
+<!--        <mapper  resource="cn/johnyu/mapper/BookMapper.xml"/>-->
+<!--        <mapper class="cn.johnyu.mapper.BookMapper"/>-->
+<!--    </mappers>-->
+</configuration>
